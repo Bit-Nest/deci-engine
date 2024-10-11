@@ -1,0 +1,150 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>Digit Recognition</title>-->
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: Arial, sans-serif;-->
+<!--            display: flex;-->
+<!--            justify-content: center;-->
+<!--            align-items: center;-->
+<!--            height: 100vh;-->
+<!--            margin: 0;-->
+<!--            background-color: #f7f7f7;-->
+<!--        }-->
+<!--        .container {-->
+<!--            text-align: center;-->
+<!--            padding: 20px;-->
+<!--            background-color: #fff;-->
+<!--            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);-->
+<!--            border-radius: 8px;-->
+<!--        }-->
+<!--        .prediction {-->
+<!--            font-size: 2rem;-->
+<!--            color: #333;-->
+<!--        }-->
+<!--        .confidence {-->
+<!--            margin-top: 10px;-->
+<!--            color: #777;-->
+<!--        }-->
+<!--        input[type="file"] {-->
+<!--            margin-bottom: 20px;-->
+<!--        }-->
+<!--        button {-->
+<!--            padding: 10px 20px;-->
+<!--            background-color: #28a745;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        button:hover {-->
+<!--            background-color: #218838;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<div class="container">-->
+<!--    <h1>Digit Recognition</h1>-->
+
+<!--    &lt;!&ndash; Form to upload an image &ndash;&gt;-->
+<!--    <form method="POST" enctype="multipart/form-data">-->
+<!--        <input type="file" name="file" accept="image/*" required><br>-->
+<!--        <button type="submit">Predict</button>-->
+<!--    </form>-->
+
+<!--    &lt;!&ndash; Display prediction result if available &ndash;&gt;-->
+<!--    {% if prediction is not none %}-->
+<!--        <p class="prediction">Predicted Value: {{ prediction }}</p>-->
+<!--        <div class="confidence">-->
+<!--            <h3>Confidence Levels</h3>-->
+<!--            <ul>-->
+<!--                {% for confidence in confidences %}-->
+<!--                    <li>Class {{ loop.index0 }}: {{ confidence * 100 | round(2) }}%</li>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+<!--        </div>-->
+<!--    {% endif %}-->
+
+<!--    &lt;!&ndash; Display error message if there is one &ndash;&gt;-->
+<!--    {% if error %}-->
+<!--        <p style="color: red;">{{ error }}</p>-->
+<!--    {% endif %}-->
+<!--</div>-->
+
+<!--</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Recognition</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .confidence-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .confidence-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            flex: 1 1 120px; /* Flex-grow, flex-shrink, and flex-basis */
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .confidence-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .prediction {
+            font-size: 2rem;
+            color: #333;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+<div class="container bg-white p-6 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold text-center mb-5">Digit Recognition</h1>
+
+    <!-- Form to upload an image -->
+    <form method="POST" enctype="multipart/form-data" class="mb-5">
+        <input type="file" name="file" accept="image/*" required class="border border-gray-300 rounded p-2">
+        <button type="submit" class="bg-green-500 text-white rounded p-2 ml-2 hover:bg-green-600 transition duration-200">Predict</button>
+    </form>
+
+    <!-- Display prediction result if available -->
+    {% if prediction is not none %}
+        <p class="prediction text-center">Predicted Value: {{ prediction }}</p>
+        <div class="confidence">
+            <h3 class="text-xl font-semibold text-center mt-4">Confidence Levels</h3>
+            <div class="confidence-list">
+                {% for confidence in confidences %}
+                    <div class="confidence-item">
+                        <p>Class {{ loop.index0 }}</p>
+                        <p>{{ (confidence * 100) | round(2) }}%</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Display error message if there is one -->
+    {% if error %}
+        <p class="text-red-500 text-center mt-4">{{ error }}</p>
+    {% endif %}
+</div>
+
+</body>
+</html>
