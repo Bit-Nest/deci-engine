@@ -6,7 +6,7 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from PIL import Image
 import io
 
-# Initialize the Flask app
+
 app = Flask(__name__)
 
 # Load the model architecture from model.json
@@ -19,7 +19,7 @@ model = model_from_json(model_json)
 model.load_weights('model.h5')
 
 
-# Route for the home page to upload image and show result
+# Routes
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
@@ -50,7 +50,7 @@ def index():
     return render_template('index.html')
 
 
-# Run the Flask app
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5100)
 
