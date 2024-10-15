@@ -39,12 +39,11 @@ This project provides a Flask-based RESTful API for real-time handwritten digit 
 6. Access the API at
    ```bash
       http://127.0.0.1:5000/predict.
-   
 
-6.API Usage
-  POST /predict: Upload an image file to get the predicted digit in JSON format.
+6.Future Work
+   <ul>
+      <li>Alphanumeric character recognition.</li>
+      <li>Mobile application integration.</li>
+      <li>Real-time handwriting conversion. </li>
+   </ul>
   
-7.Future Work
-  1. Alphanumeric character recognition.
-  2.Mobile application integration.
-  3.Real-time handwriting conversion.
