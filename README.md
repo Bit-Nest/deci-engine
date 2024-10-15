@@ -45,6 +45,6 @@ This project provides a Flask-based RESTful API for real-time handwritten digit 
   POST /predict: Upload an image file to get the predicted digit in JSON format.
   
 7.Future Work
-  Alphanumeric character recognition.
-  Mobile application integration.
-  Real-time handwriting conversion.
+  1. Alphanumeric character recognition.
+  2.Mobile application integration.
+  3.Real-time handwriting conversion.
