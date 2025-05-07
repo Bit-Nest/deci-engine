@@ -11,7 +11,7 @@ This project provides a Flask-based RESTful API for real-time handwritten digit 
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Ketan-Chaudhary/deci-engine.git
+   git clone https://github.com/Bit-Nest/deci-engine.git
 
 
 2. Repository Structure
